@@ -206,6 +206,26 @@ button{font-family:inherit;cursor:pointer;border:none;outline:none;transition:al
 .btn-hm{padding:13px;border-radius:12px;font-size:14px;font-weight:700;
   font-family:'Noto Sans KR',sans-serif;background:white;color:var(--ink);border:1.5px solid var(--pd)}
 
+/* ── 과 선택 탭 ── */
+.tab-wrap{
+  display:flex;overflow-x:auto;gap:8px;padding:12px 14px 0;
+  background:white;border-bottom:2px solid var(--pd);
+  scrollbar-width:none;
+}
+.tab-wrap::-webkit-scrollbar{display:none}
+.tab-btn{
+  flex-shrink:0;min-width:72px;padding:8px 12px;border-radius:10px 10px 0 0;
+  background:var(--pw);border:1.5px solid var(--pd);border-bottom:none;
+  text-align:center;font-family:'Noto Sans KR',sans-serif;cursor:pointer;
+  transition:all .15s;
+}
+.tab-btn:active{opacity:.7}
+.tab-active{background:white;border-color:var(--red);border-bottom:2px solid white;margin-bottom:-2px;z-index:1}
+.tab-n{font-size:14px;font-weight:700;color:var(--ink)}
+.tab-active .tab-n{color:var(--red)}
+.tab-sub{font-size:9px;color:var(--ilt);margin-top:1px}
+.tab-p{font-size:11px;font-weight:700;color:var(--gold);margin-top:2px}
+
 @keyframes popIn{0%{transform:scale(.75);opacity:0}80%{transform:scale(1.08)}100%{transform:scale(1);opacity:1}}
 @keyframes shake{0%,100%{transform:translateX(0)}25%{transform:translateX(-5px)}75%{transform:translateX(5px)}}
 .pop{animation:popIn .22s ease both}
@@ -217,7 +237,7 @@ button{font-family:inherit;cursor:pointer;border:none;outline:none;transition:al
 <!-- 홈 -->
 <div id="screen-home" class="screen active">
   <div class="hero">
-    <div class="h-eye">JLPT N4 · 漢字읽기 기출어휘 2016~2024</div>
+    <div class="h-eye">JLPT N4 · 漢字읽기 기출어휘</div>
     <div class="h-ttl">N4 <b>学習</b>ゲーム</div>
     <div class="h-sub">단어 학습 ↔ 한자 1자 학습을 분리하여 집중 훈련</div>
     <div class="h-stats">
@@ -227,6 +247,8 @@ button{font-family:inherit;cursor:pointer;border:none;outline:none;transition:al
       <div class="hs"><div class="hs-n" style="color:var(--gold)" id="h-pc">0%</div><div class="hs-l">달성률</div></div>
     </div>
   </div>
+  <!-- 과 선택 탭 -->
+  <div class="tab-wrap" id="lesson-tabs"></div>
   <div class="hbody" id="home-body"></div>
 </div>
 
@@ -509,18 +531,312 @@ const KANJI=[
   hint:"풀(艹)로 만든 즐거운(楽) 것 = 병을 낫게 하는 약 💊"},
 ];
 
-const LESSONS={1:{name:"한자읽기 기출어휘",sub:"2016~2024"}};
+// ── 2과 VOCAB ──
+VOCAB.push(
+/* あ */
+{w:"青い",r:"あおい",m:"파랗다",l:2},
+{w:"秋",r:"あき",m:"가을",l:2},
+{w:"味",r:"あじ",m:"맛",l:2},
+{w:"暑い",r:"あつい",m:"덥다",l:2},
+{w:"集まる",r:"あつまる",m:"모이다",l:2},
+{w:"歩く",r:"あるく",m:"걷다",l:2},
+{w:"明るい",r:"あかるい",m:"밝다",l:2},
+{w:"開ける",r:"あける",m:"열다",l:2},
+{w:"頭",r:"あたま",m:"머리",l:2},
+{w:"暑さ",r:"あつさ",m:"더위",l:2},
+{w:"姉",r:"あね",m:"언니·누나",l:2},
+{w:"安心",r:"あんしん",m:"안심",l:2},
+{w:"以外",r:"いがい",m:"이외",l:2},
+{w:"意見",r:"いけん",m:"의견",l:2},
+{w:"医者",r:"いしゃ",m:"의사",l:2},
+{w:"一度",r:"いちど",m:"한 번",l:2},
+{w:"色",r:"いろ",m:"색",l:2},
+{w:"池",r:"いけ",m:"연못",l:2},
+{w:"石",r:"いし",m:"돌",l:2},
+{w:"急ぐ",r:"いそぐ",m:"서두르다",l:2},
+{w:"妹",r:"いもうと",m:"여동생",l:2},
+{w:"動く",r:"うごく",m:"움직이다",l:2},
+{w:"歌",r:"うた",m:"노래",l:2},
+{w:"歌う",r:"うたう",m:"노래를 부르다",l:2},
+{w:"写す",r:"うつす",m:"베끼다·찍다",l:2},
+{w:"売る",r:"うる",m:"팔다",l:2},
+{w:"海",r:"うみ",m:"바다",l:2},
+{w:"運動",r:"うんどう",m:"운동",l:2},
+{w:"英語",r:"えいご",m:"영어",l:2},
+{w:"営業",r:"えいぎょう",m:"영업",l:2},
+{w:"起きる",r:"おきる",m:"일어나다",l:2},
+{w:"お正月",r:"おしょうがつ",m:"양력설",l:2},
+{w:"送る",r:"おくる",m:"보내다",l:2},
+{w:"重い",r:"おもい",m:"무겁다",l:2},
+{w:"泳ぐ",r:"およぐ",m:"헤엄치다",l:2},
+{w:"終わる",r:"おわる",m:"끝나다",l:2},
+{w:"音楽",r:"おんがく",m:"음악",l:2},
+/* か */
+{w:"会場",r:"かいじょう",m:"회장·행사장",l:2},
+{w:"火事",r:"かじ",m:"화재",l:2},
+{w:"帰る",r:"かえる",m:"돌아가다",l:2},
+{w:"貸す",r:"かす",m:"빌려주다",l:2},
+{w:"家族",r:"かぞく",m:"가족",l:2},
+{w:"通う",r:"かよう",m:"다니다",l:2},
+{w:"風",r:"かぜ",m:"바람",l:2},
+{w:"方",r:"かた",m:"분(사람)",l:2},
+{w:"体",r:"からだ",m:"몸",l:2},
+{w:"代わり",r:"かわり",m:"대신",l:2},
+{w:"軽い",r:"かるい",m:"가볍다",l:2},
+{w:"考える",r:"かんがえる",m:"생각하다",l:2},
+{w:"気分",r:"きぶん",m:"기분",l:2},
+{w:"決まる",r:"きまる",m:"결정되다",l:2},
+{w:"着物",r:"きもの",m:"옷·기모노",l:2},
+{w:"急に",r:"きゅうに",m:"급히·갑자기",l:2},
+{w:"教室",r:"きょうしつ",m:"교실",l:2},
+{w:"去年",r:"きょねん",m:"작년",l:2},
+{w:"銀行",r:"ぎんこう",m:"은행",l:2},
+{w:"近所",r:"きんじょ",m:"근처",l:2},
+{w:"首",r:"くび",m:"목",l:2},
+{w:"黒い",r:"くろい",m:"검다",l:2},
+{w:"薬",r:"くすり",m:"약",l:2},
+{w:"暗い",r:"くらい",m:"어둡다",l:2},
+{w:"計画",r:"けいかく",m:"계획",l:2},
+{w:"経験",r:"けいけん",m:"경험",l:2},
+{w:"県",r:"けん",m:"현(행정구역)",l:2},
+{w:"研究",r:"けんきゅう",m:"연구",l:2},
+{w:"公園",r:"こうえん",m:"공원",l:2},
+{w:"工場",r:"こうじょう",m:"공장",l:2},
+{w:"氷",r:"こおり",m:"얼음",l:2},
+{w:"答える",r:"こたえる",m:"대답하다",l:2},
+{w:"声",r:"こえ",m:"(목)소리",l:2},
+{w:"今度",r:"こんど",m:"이번·다음",l:2},
+/* さ */
+{w:"産業",r:"さんぎょう",m:"산업",l:2},
+{w:"社会",r:"しゃかい",m:"사회",l:2},
+{w:"試合",r:"しあい",m:"시합",l:2},
+{w:"仕事",r:"しごと",m:"일",l:2},
+{w:"自転車",r:"じてんしゃ",m:"자전거",l:2},
+{w:"質問",r:"しつもん",m:"질문",l:2},
+{w:"品物",r:"しなもの",m:"물건",l:2},
+{w:"市民",r:"しみん",m:"시민",l:2},
+{w:"知る",r:"しる",m:"알다",l:2},
+{w:"死ぬ",r:"しぬ",m:"죽다",l:2},
+{w:"出発",r:"しゅっぱつ",m:"출발",l:2},
+{w:"小説",r:"しょうせつ",m:"소설",l:2},
+{w:"食堂",r:"しょくどう",m:"식당",l:2},
+{w:"食料品",r:"しょくりょうひん",m:"식료품",l:2},
+{w:"人口",r:"じんこう",m:"인구",l:2},
+{w:"親切だ",r:"しんせつだ",m:"친절하다",l:2},
+{w:"新聞社",r:"しんぶんしゃ",m:"신문사",l:2},
+{w:"水道",r:"すいどう",m:"수도",l:2},
+{w:"少し",r:"すこし",m:"조금",l:2},
+{w:"好きだ",r:"すきだ",m:"좋아하다",l:2},
+{w:"進む",r:"すすむ",m:"나아가다·진행되다",l:2},
+{w:"西洋",r:"せいよう",m:"서양",l:2},
+{w:"説明",r:"せつめい",m:"설명",l:2},
+{w:"世界",r:"せかい",m:"세계",l:2},
+{w:"世話",r:"せわ",m:"도와줌·보살핌",l:2},
+{w:"祖母",r:"そぼ",m:"조모·할머니",l:2},
+/* た */
+{w:"大使館",r:"たいしかん",m:"대사관",l:2},
+{w:"台所",r:"だいどころ",m:"부엌",l:2},
+{w:"建物",r:"たてもの",m:"건물",l:2},
+{w:"楽しい",r:"たのしい",m:"즐겁다",l:2},
+{w:"足りる",r:"たりる",m:"충분하다",l:2},
+{w:"茶色",r:"ちゃいろ",m:"갈색",l:2},
+{w:"力",r:"ちから",m:"힘",l:2},
+{w:"地理",r:"ちり",m:"지리",l:2},
+{w:"中止",r:"ちゅうし",m:"중지",l:2},
+{w:"注意",r:"ちゅうい",m:"주의",l:2},
+{w:"着く",r:"つく",m:"도착하다",l:2},
+{w:"都合",r:"つごう",m:"사정·형편",l:2},
+{w:"強い",r:"つよい",m:"강하다",l:2},
+{w:"手紙",r:"てがみ",m:"편지",l:2},
+{w:"店員",r:"てんいん",m:"점원",l:2},
+{w:"遠く",r:"とおく",m:"멀리",l:2},
+{w:"遠い",r:"とおい",m:"멀다",l:2},
+{w:"通る",r:"とおる",m:"지나다",l:2},
+{w:"都会",r:"とかい",m:"도시",l:2},
+{w:"図書館",r:"としょかん",m:"도서관",l:2},
+{w:"止まる",r:"とまる",m:"멈추다",l:2},
+{w:"特別だ",r:"とくべつだ",m:"특별하다",l:2},
+{w:"特急",r:"とっきゅう",m:"특급",l:2},
+{w:"鳥",r:"とり",m:"새",l:2},
+/* な */
+{w:"夏",r:"なつ",m:"여름",l:2},
+{w:"日記",r:"にっき",m:"일기",l:2},
+{w:"二台",r:"にだい",m:"두 대",l:2},
+{w:"乗る",r:"のる",m:"타다",l:2},
+/* は */
+{w:"運ぶ",r:"はこぶ",m:"운반하다·옮기다",l:2},
+{w:"始める",r:"はじめる",m:"시작하다",l:2},
+{w:"走る",r:"はしる",m:"달리다",l:2},
+{w:"場所",r:"ばしょ",m:"장소",l:2},
+{w:"働く",r:"はたらく",m:"일하다",l:2},
+{w:"発音",r:"はつおん",m:"발음",l:2},
+{w:"花",r:"はな",m:"꽃",l:2},
+{w:"春",r:"はる",m:"봄",l:2},
+{w:"早く",r:"はやく",m:"일찍·빨리",l:2},
+{w:"光",r:"ひかり",m:"빛",l:2},
+{w:"光る",r:"ひかる",m:"빛나다",l:2},
+{w:"低い",r:"ひくい",m:"낮다",l:2},
+{w:"昼",r:"ひる",m:"낮",l:2},
+{w:"病院",r:"びょういん",m:"병원",l:2},
+{w:"広い",r:"ひろい",m:"넓다",l:2},
+{w:"不便だ",r:"ふべんだ",m:"불편하다",l:2},
+{w:"服",r:"ふく",m:"옷",l:2},
+{w:"古い",r:"ふるい",m:"오래됐다·낡다",l:2},
+{w:"冬",r:"ふゆ",m:"겨울",l:2},
+{w:"文",r:"ぶん",m:"문장",l:2},
+{w:"文学",r:"ぶんがく",m:"문학",l:2},
+{w:"勉強",r:"べんきょう",m:"공부",l:2},
+/* ま */
+{w:"毎朝",r:"まいあさ",m:"매일 아침",l:2},
+{w:"間に合う",r:"まにあう",m:"시간에 맞추다",l:2},
+{w:"待つ",r:"まつ",m:"기다리다",l:2},
+{w:"町",r:"まち",m:"시내·도시",l:2},
+{w:"短い",r:"みじかい",m:"짧다",l:2},
+{w:"港",r:"みなと",m:"항구",l:2},
+{w:"目",r:"め",m:"눈(目)",l:2},
+{w:"村",r:"むら",m:"마을",l:2},
+{w:"持てる",r:"もてる",m:"들 수 있다",l:2},
+{w:"門",r:"もん",m:"문(門)",l:2},
+{w:"森",r:"もり",m:"숲",l:2},
+/* や */
+{w:"野菜",r:"やさい",m:"채소",l:2},
+{w:"有名だ",r:"ゆうめいだ",m:"유명하다",l:2},
+{w:"夕方",r:"ゆうがた",m:"저녁때",l:2},
+{w:"洋服",r:"ようふく",m:"양복·옷",l:2},
+{w:"予定",r:"よてい",m:"예정",l:2},
+{w:"夜",r:"よる",m:"밤",l:2},
+{w:"弱い",r:"よわい",m:"약하다",l:2},
+/* ら・わ */
+{w:"旅行",r:"りょこう",m:"여행",l:2},
+{w:"別れる",r:"わかれる",m:"헤어지다",l:2},
+{w:"悪い",r:"わるい",m:"나쁘다",l:2}
+);
+
+// ── 2과 KANJI ──
+KANJI.push(
+{k:"秋",ko:"가을 추",on:"シュウ",kun:"あき",m:"가을",l:2,from:"秋",
+  hint:"벼(禾)를 불(火)에 말리며 수확하는 가을 🍂"},
+{k:"暑",ko:"더울 서",on:"ショ",kun:"あつ",m:"덥다",l:2,from:"暑い·暑さ",
+  hint:"해(日)가 사람(者) 위에 강렬하게 내리쬐는 여름 더위 🌡️"},
+{k:"集",ko:"모을 집",on:"シュウ",kun:"あつ",m:"모이다",l:2,from:"集まる",
+  hint:"나무(木) 위에 새(隹)들이 무리 지어 모여드는 모습 🐦"},
+{k:"歩",ko:"걸을 보",on:"ホ",kun:"ある",m:"걷다",l:2,from:"歩く·早く",
+  hint:"발(止)이 약간(少) 움직이며 걸어가는 모습 👟"},
+{k:"明",ko:"밝을 명",on:"メイ",kun:"あか·あき",m:"밝다",l:2,from:"明るい",
+  hint:"해(日)와 달(月)이 함께 빛나 환하게 밝은 것 ☀️🌙"},
+{k:"開",ko:"열 개",on:"カイ",kun:"あ·ひら",m:"열다",l:2,from:"開ける",
+  hint:"문(門)의 빗장을 두 손으로 활짝 열어 젖히는 모습 🚪"},
+{k:"頭",ko:"머리 두",on:"トウ",kun:"あたま",m:"머리",l:2,from:"頭",
+  hint:"사람(頁)의 맨 위 = 머리 👤"},
+{k:"姉",ko:"언니 자",on:"シ",kun:"あね",m:"언니·누나",l:2,from:"姉",
+  hint:"여자(女) 중 먼저(市) 태어난 언니 👩"},
+{k:"池",ko:"못 지",on:"チ",kun:"いけ",m:"연못",l:2,from:"池",
+  hint:"물(氵)이 뱀(也)처럼 고여 있는 연못 🏞️"},
+{k:"石",ko:"돌 석",on:"セキ",kun:"いし",m:"돌",l:2,from:"石",
+  hint:"절벽(厂) 아래 굴러다니는 네모난 돌 ⬛"},
+{k:"妹",ko:"여동생 매",on:"マイ",kun:"いもうと",m:"여동생",l:2,from:"妹",
+  hint:"여자(女) 중 아직(未) 어린 여동생 👧"},
+{k:"動",ko:"움직일 동",on:"ドウ",kun:"うご",m:"움직이다",l:2,from:"動く·運動",
+  hint:"무겁게(重) 힘(力)을 써서 움직이는 것 🏃"},
+{k:"英",ko:"꽃부리 영",on:"エイ",kun:"",m:"영어·영국",l:2,from:"英語",
+  hint:"풀(艹) 가운데서 빛나는(央) 꽃 = 뛰어난 것 🌸"},
+{k:"起",ko:"일어날 기",on:"キ",kun:"お",m:"일어나다",l:2,from:"起きる",
+  hint:"몸(己)이 발(走)로 힘차게 일어서는 모습 ⬆️"},
+{k:"泳",ko:"헤엄칠 영",on:"エイ",kun:"およ",m:"헤엄치다",l:2,from:"泳ぐ",
+  hint:"물(氵)속에서 길게(永) 나아가는 수영 🏊"},
+{k:"音",ko:"소리 음",on:"オン",kun:"おと",m:"소리",l:2,from:"音楽",
+  hint:"서서(立) 날(日) 것 같은 소리의 파동 🎵"},
+{k:"送",ko:"보낼 송",on:"ソウ",kun:"おく",m:"보내다",l:2,from:"送る",
+  hint:"길(辶)을 따라 두 손(关)으로 배웅하는 것 📨"},
+{k:"終",ko:"끝날 종",on:"シュウ",kun:"お",m:"끝나다",l:2,from:"終わる",
+  hint:"실(糸)이 겨울(冬)처럼 다 끊어진 끝 🏁"},
+{k:"火",ko:"불 화",on:"カ",kun:"ひ",m:"불·화재",l:2,from:"火事",
+  hint:"불꽃이 좌우로 활활 타오르는 모습 🔥"},
+{k:"風",ko:"바람 풍",on:"フウ",kun:"かぜ",m:"바람",l:2,from:"風",
+  hint:"봉황(凤)처럼 바람이 사방으로 퍼지는 것 💨"},
+{k:"帰",ko:"돌아갈 귀",on:"キ",kun:"かえ",m:"돌아가다",l:2,from:"帰る",
+  hint:"발걸음(止)을 돌려 집으로 돌아가는 것 🏠"},
+{k:"黒",ko:"검을 흑",on:"コク",kun:"くろ",m:"검다",l:2,from:"黒い",
+  hint:"그을음이 쌓여(里) 불(灬)에 탄 검은색 ⬛"},
+{k:"声",ko:"소리 성",on:"セイ",kun:"こえ",m:"소리·목소리",l:2,from:"声",
+  hint:"도끼(士)로 두드려 내는 것처럼 울리는 목소리 📣"},
+{k:"死",ko:"죽을 사",on:"シ",kun:"し",m:"죽다",l:2,from:"死ぬ",
+  hint:"뼈(歹) 앞에 비수(匕)가 있는 죽음의 모습 💀"},
+{k:"知",ko:"알 지",on:"チ",kun:"し",m:"알다",l:2,from:"知る",
+  hint:"화살(矢)처럼 입(口)으로 빠르게 전달되는 앎 💡"},
+{k:"説",ko:"말씀 설",on:"セツ",kun:"と",m:"설명하다",l:2,from:"説明",
+  hint:"말(言)로 기쁘게(兌) 풀어 설득하는 것 💬"},
+{k:"建",ko:"세울 건",on:"ケン",kun:"た",m:"건물·세우다",l:2,from:"建物",
+  hint:"붓(聿)처럼 위로 뻗어 올라가는(廴) 건축 🏗️"},
+{k:"茶",ko:"차 다",on:"チャ",kun:"",m:"차·갈색",l:2,from:"茶色",
+  hint:"풀(艹) 아래 나무(木)에 사람(人)이 기대어 차를 즐기는 것 🍵"},
+{k:"止",ko:"그칠 지",on:"シ",kun:"と",m:"멈추다",l:2,from:"止まる·中止",
+  hint:"발의 앞부분만 그린 것 = 발이 딱 멈춘 모습 🛑"},
+{k:"鳥",ko:"새 조",on:"チョウ",kun:"とり",m:"새",l:2,from:"鳥",
+  hint:"부리·눈·날개·꼬리가 있는 새의 모습 🐦"},
+{k:"運",ko:"운반할 운",on:"ウン",kun:"はこ",m:"운반하다·옮기다",l:2,from:"運ぶ·運動",
+  hint:"군대(軍)가 길(辶)을 따라 이동하는 것 🚚"},
+{k:"働",ko:"일할 동",on:"ドウ",kun:"はたら",m:"일하다",l:2,from:"働く",
+  hint:"사람(亻)이 무겁게(重) 움직이며(動) 일하는 것 🔨"},
+{k:"花",ko:"꽃 화",on:"カ",kun:"はな",m:"꽃",l:2,from:"花",
+  hint:"풀(艹)이 화려하게 변화(化)한 꽃 🌸"},
+{k:"始",ko:"시작할 시",on:"シ",kun:"はじ",m:"시작하다",l:2,from:"始める",
+  hint:"여자(女)가 입(台)으로 말하며 시작하는 것 🚀"},
+{k:"走",ko:"달릴 주",on:"ソウ",kun:"はし",m:"달리다",l:2,from:"走る",
+  hint:"흙 위에서 발(止)로 뛰어가는 사람(大)의 모습 🏃"},
+{k:"低",ko:"낮을 저",on:"テイ",kun:"ひく",m:"낮다",l:2,from:"低い",
+  hint:"사람(亻)이 아래(氏)로 몸을 낮추는 것 ↓"},
+{k:"昼",ko:"낮 주",on:"チュウ",kun:"ひる",m:"낮",l:2,from:"昼",
+  hint:"해(日)가 가장 높은(尺) 한낮 ☀️"},
+{k:"服",ko:"옷 복",on:"フク",kun:"",m:"옷",l:2,from:"服·洋服",
+  hint:"배(月)처럼 몸에 순응하며(卩) 맞게 입는 옷 👔"},
+{k:"古",ko:"옛 고",on:"コ",kun:"ふる",m:"오래됐다·낡다",l:2,from:"古い",
+  hint:"열(十) 세대에 걸쳐 입(口)으로 전해진 것 = 오래됨 🏺"},
+{k:"文",ko:"글 문",on:"ブン",kun:"ふみ",m:"문장·글",l:2,from:"文·文学",
+  hint:"사람 가슴에 새긴 무늬(紋)가 글자의 기원 ✍️"},
+{k:"短",ko:"짧을 단",on:"タン",kun:"みじか",m:"짧다",l:2,from:"短い",
+  hint:"화살(矢)처럼 콩(豆)이 짧게 날아가는 것 📏"},
+{k:"村",ko:"마을 촌",on:"ソン",kun:"むら",m:"마을",l:2,from:"村",
+  hint:"나무(木)로 인치(寸)를 재며 집을 짓는 마을 🏘️"},
+{k:"門",ko:"문 문",on:"モン",kun:"かど",m:"문(門)",l:2,from:"門",
+  hint:"좌우 두 짝의 문이 마주 선 모습 🚪"},
+{k:"目",ko:"눈 목",on:"モク",kun:"め",m:"눈(目)",l:2,from:"目",
+  hint:"눈의 모양을 세워서 그린 상형문자 👁️"},
+{k:"夕",ko:"저녁 석",on:"セキ",kun:"ゆう",m:"저녁",l:2,from:"夕方",
+  hint:"달이 반쯤 보이는 저녁 하늘의 모습 🌙"},
+{k:"夜",ko:"밤 야",on:"ヤ",kun:"よる",m:"밤",l:2,from:"夜",
+  hint:"저녁(夕)에 사람(亻)이 달(月) 아래 서있는 밤 🌙"},
+{k:"悪",ko:"나쁠 악",on:"アク",kun:"わる",m:"나쁘다",l:2,from:"悪い",
+  hint:"아시아(亜)처럼 굴절된 마음(心) = 비뚤어진 마음 😈"},
+{k:"別",ko:"나눌 별",on:"ベツ",kun:"わか",m:"나누다·헤어지다",l:2,from:"別れる",
+  hint:"뼈(冎)를 칼(刀)로 나누어 분리하는 것 ✂️"},
+{k:"旅",ko:"여행 려",on:"リョ",kun:"たび",m:"여행",l:2,from:"旅行",
+  hint:"깃발(方) 아래 사람들이 무리 지어 떠나는 여행 ✈️"},
+{k:"毎",ko:"매 매",on:"マイ",kun:"",m:"매번·~마다",l:2,from:"毎朝",
+  hint:"어머니(毋)처럼 매번 반복되는 일상 🔁"},
+{k:"町",ko:"마을 정",on:"チョウ",kun:"まち",m:"마을·시내",l:2,from:"町",
+  hint:"밭(田)에 경계선(丁)을 그어 구획한 마을 🏙️"},
+{k:"港",ko:"항구 항",on:"コウ",kun:"みなと",m:"항구",l:2,from:"港",
+  hint:"물(氵)이 공(巷)처럼 공동으로 쓰이는 항구 ⚓"},
+{k:"森",ko:"숲 삼",on:"シン",kun:"もり",m:"숲",l:2,from:"森",
+  hint:"나무(木) 세 그루가 모여 울창한 숲을 이룸 🌳🌳🌳"}
+);
 
 // ================================================================
 // STATE
 // ================================================================
+const LESSONS={
+  1:{name:"기출어휘",sub:"2016~2024"},
+  2:{name:"기출어휘",sub:"2000~2015"}
+};
+
 const shuf=a=>{const r=[...a];for(let i=r.length-1;i>0;i--){const j=0|Math.random()*(i+1);[r[i],r[j]]=[r[j],r[i]];}return r;};
 
 let S={
   deck:[],idx:0,flipped:false,dtype:"",
   qdeck:[],quiz:null,sel:null,
   score:0,combo:0,maxC:0,tot:0,corr:0,
-  col:"v",lastFn:null,
+  col:"v",lastFn:null,curLesson:1,
   lrn:JSON.parse(localStorage.getItem("n4g_l")||"{}"),
 };
 const save=()=>localStorage.setItem("n4g_l",JSON.stringify(S.lrn));
@@ -532,31 +848,55 @@ const kan=id=>KANJI.filter(x=>x.l===id);
 // 홈
 // ================================================================
 function renderHome(){
-  const vt=VOCAB.length, kt=KANJI.length;
-  const vk=VOCAB.filter(x=>ok(x.w)).length;
-  const kk=KANJI.filter(x=>ok(x.k)).length;
-  const kn=vk+kk, tot=vt+kt;
-  document.getElementById("h-vt").textContent=vt;
-  document.getElementById("h-kt").textContent=kt;
+  const allV=VOCAB, allK=KANJI;
+  const vk=allV.filter(x=>ok(x.w)).length;
+  const kk=allK.filter(x=>ok(x.k)).length;
+  const kn=vk+kk, tot=allV.length+allK.length;
+  document.getElementById("h-vt").textContent=allV.length;
+  document.getElementById("h-kt").textContent=allK.length;
   document.getElementById("h-kn").textContent=kn;
   document.getElementById("h-pc").textContent=Math.round(kn/tot*100)+"%";
 
-  document.getElementById("home-body").innerHTML=Object.entries(LESSONS).map(([id,ln])=>{
+  // 과 탭 렌더
+  const tabsHtml=Object.entries(LESSONS).map(([id,ln])=>{
     const lid=+id;
     const vs=voc(lid), ks=kan(lid);
-    const vk=vs.filter(x=>ok(x.w)).length, kk=ks.filter(x=>ok(x.k)).length;
-    const vp=vs.length?Math.round(vk/vs.length*100):0;
-    const kp=ks.length?Math.round(kk/ks.length*100):0;
-    const tp=Math.round((vk+kk)/(vs.length+ks.length)*100);
-    return`<div class="lc">
+    const k2=vs.filter(x=>ok(x.w)).length+ks.filter(x=>ok(x.k)).length;
+    const t2=vs.length+ks.length;
+    const p2=t2?Math.round(k2/t2*100):0;
+    const active=lid===S.curLesson;
+    return`<button class="tab-btn ${active?"tab-active":""}" onclick="selectLesson(${lid})">
+      <div class="tab-n">${id}과</div>
+      <div class="tab-sub">${ln.sub}</div>
+      <div class="tab-p">${p2}%</div>
+    </button>`;
+  }).join("");
+  document.getElementById("lesson-tabs").innerHTML=tabsHtml;
+  renderLessonDetail(S.curLesson);
+}
+
+function selectLesson(lid){
+  S.curLesson=lid;
+  renderHome();
+}
+
+function renderLessonDetail(lid){
+  const ln=LESSONS[lid];
+  const vs=voc(lid), ks=kan(lid);
+  const vk=vs.filter(x=>ok(x.w)).length, kk2=ks.filter(x=>ok(x.k)).length;
+  const vp=vs.length?Math.round(vk/vs.length*100):0;
+  const kp=ks.length?Math.round(kk2/ks.length*100):0;
+  const tp=Math.round((vk+kk2)/(vs.length+ks.length)*100);
+
+  document.getElementById("home-body").innerHTML=`
+    <div class="lc">
       <div class="lc-h">
         <div class="lc-row">
-          <div class="lc-nm">과 ${id}. ${ln.name}</div>
+          <div class="lc-nm">${lid}과. ${ln.name}</div>
           <div class="lc-bg">${ln.sub} · ${vs.length+ks.length}개</div>
         </div>
         <div class="lc-bar"><div class="lc-fill" style="width:${tp}%"></div></div>
       </div>
-      <!-- 단어 섹션 -->
       <div class="sect">
         <div class="sh">
           <div class="si v">語</div>
@@ -577,7 +917,6 @@ function renderHome(){
           <button class="mb mv-hm" onclick="startQ(${lid},'vocab','hiramean')">🔰 기초훈련 — 히라가나 보고 한글 뜻 고르기</button>
         </div>
       </div>
-      <!-- 한자 1자 섹션 -->
       <div class="sect">
         <div class="sh">
           <div class="si k">漢</div>
@@ -593,7 +932,6 @@ function renderHome(){
         </div>
       </div>
     </div>`;
-  }).join("");
 }
 
 function showScr(n){document.querySelectorAll(".screen").forEach(s=>s.classList.remove("active"));document.getElementById("screen-"+n).classList.add("active");}
@@ -750,12 +1088,40 @@ function startQ(lid,dtype,mode){
   buildQ();
 }
 
+function smartWrong(c, all, mode, n){
+  // 발음 앞글자가 같거나, 뜻 품사가 같은 것을 우선 오답으로
+  const key=S.dtype==="kanji"?"k":"w";
+  const pool=all.filter(x=>x[key]!==c[key]);
+  let similar=[], rest=[];
+
+  if(mode==="read"||mode==="hira"){
+    similar=pool.filter(x=>x.r[0]===c.r[0]||x.r.slice(0,2)===c.r.slice(0,2));
+    rest=pool.filter(x=>!similar.includes(x));
+  } else if(mode==="on"){
+    similar=pool.filter(x=>x.on&&c.on&&x.on[0]===c.on[0]);
+    rest=pool.filter(x=>!similar.includes(x));
+  } else if(mode==="kun"){
+    similar=pool.filter(x=>x.kun&&c.kun&&x.kun[0]===c.kun[0]);
+    rest=pool.filter(x=>!similar.includes(x));
+  } else { // mean, hiramean
+    const getType=w=>{
+      if(w.m.endsWith("하다")||w.m.endsWith("되다")||w.r.endsWith("る")||w.r.endsWith("く")||w.r.endsWith("ぐ")||w.r.endsWith("ぬ")||w.r.endsWith("む")||w.r.endsWith("ぶ")) return "vb";
+      if(w.r.endsWith("い")||w.m.endsWith("다")) return "adj";
+      return "noun";
+    };
+    similar=pool.filter(x=>getType(x)===getType(c));
+    rest=pool.filter(x=>!similar.includes(x));
+  }
+  const picked=[...shuf(similar),...shuf(rest)];
+  return picked.slice(0,n);
+}
+
 function buildQ(){
   if(S.qdeck.length===0){showResult();return;}
   const all=S._all, mode=S._mode;
   const c=S.qdeck.pop();
   S.tot++;
-  const others=shuf(all.filter(x=>(S.dtype==="vocab"?x.w:x.k)!==(S.dtype==="vocab"?c.w:c.k))).slice(0,3);
+  const others=smartWrong(c,all,mode,3);
 
   let qtype,qwTxt,qrTxt,qsTxt,correct,opts;
   const isK=S.dtype==="kanji";
