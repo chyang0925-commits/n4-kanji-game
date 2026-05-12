@@ -143,6 +143,30 @@ button{font-family:inherit;cursor:pointer;border:none;outline:none;transition:al
   border-radius:10px;padding:8px 12px;font-size:12px;color:var(--imid);
   font-family:'Noto Sans KR',sans-serif;line-height:1.8;text-align:center}
 .hint-box b{color:var(--gold)}
+/* 앞면 힌트 팝업 */
+.hint-popup{
+  position:absolute;bottom:10px;left:10px;right:10px;
+  background:rgba(255,248,220,.97);border:1.5px dashed var(--gold);
+  border-radius:10px;padding:8px 12px;font-size:11px;
+  color:#5a4a20;font-family:'Noto Sans KR',sans-serif;
+  line-height:1.7;text-align:left;box-shadow:0 3px 12px rgba(0,0,0,.12);
+}
+.hint-popup b{color:var(--gold)}
+.btn-hint-front{
+  position:absolute;top:12px;right:12px;
+  background:rgba(200,160,64,.15);color:var(--gold);
+  border:1px solid rgba(200,160,64,.4);border-radius:20px;
+  padding:3px 9px;font-size:11px;font-weight:700;
+  font-family:'Noto Sans KR',sans-serif;z-index:5;transition:background .15s;
+}
+.btn-hint-front:active{background:rgba(200,160,64,.35)}
+/* HOT 중요 배지 */
+.hot-badge{
+  display:inline-block;background:var(--red);color:white;
+  font-size:9px;font-weight:700;padding:1px 5px;border-radius:10px;
+  vertical-align:middle;margin-left:4px;font-family:'Noto Sans KR',sans-serif;
+  letter-spacing:.5px;
+}
 /* 단어의 출처 표시 */
 .c-from{font-family:'Noto Sans KR',sans-serif;font-size:10px;color:var(--ilt);margin-top:4px}
 
@@ -712,6 +736,329 @@ VOCAB.push(
 {w:"悪い",r:"わるい",m:"나쁘다",l:2}
 );
 
+// ── 3과 VOCAB (2000~2015 기출어휘 2) ──
+VOCAB.push(
+{w:"青い",r:"あおい",m:"파랗다",l:3,hot:true},
+{w:"秋",r:"あき",m:"가을",l:3},
+{w:"味",r:"あじ",m:"맛",l:3},
+{w:"暑い",r:"あつい",m:"덥다",l:3},
+{w:"集まる",r:"あつまる",m:"모이다",l:3},
+{w:"歩く",r:"あるく",m:"걷다",l:3},
+{w:"明るい",r:"あかるい",m:"밝다",l:3},
+{w:"開ける",r:"あける",m:"열다",l:3},
+{w:"頭",r:"あたま",m:"머리",l:3},
+{w:"暑さ",r:"あつさ",m:"더위",l:3},
+{w:"姉",r:"あね",m:"언니·누나",l:3},
+{w:"安心",r:"あんしん",m:"안심",l:3},
+{w:"以外",r:"いがい",m:"이외",l:3,hot:true},
+{w:"意見",r:"いけん",m:"의견",l:3,hot:true},
+{w:"医者",r:"いしゃ",m:"의사",l:3},
+{w:"一度",r:"いちど",m:"한 번",l:3},
+{w:"色",r:"いろ",m:"색",l:3},
+{w:"池",r:"いけ",m:"연못",l:3},
+{w:"石",r:"いし",m:"돌",l:3},
+{w:"急ぐ",r:"いそぐ",m:"서두르다",l:3},
+{w:"妹",r:"いもうと",m:"여동생",l:3},
+{w:"動く",r:"うごく",m:"움직이다",l:3},
+{w:"歌",r:"うた",m:"노래",l:3},
+{w:"歌う",r:"うたう",m:"노래를 부르다",l:3},
+{w:"写す",r:"うつす",m:"베끼다·찍다",l:3},
+{w:"売る",r:"うる",m:"팔다",l:3},
+{w:"海",r:"うみ",m:"바다",l:3},
+{w:"運動",r:"うんどう",m:"운동",l:3,hot:true},
+{w:"英語",r:"えいご",m:"영어",l:3,hot:true},
+{w:"営業",r:"えいぎょう",m:"영업",l:3},
+{w:"起きる",r:"おきる",m:"일어나다",l:3},
+{w:"お正月",r:"おしょうがつ",m:"양력설",l:3},
+{w:"送る",r:"おくる",m:"보내다",l:3,hot:true},
+{w:"重い",r:"おもい",m:"무겁다",l:3},
+{w:"泳ぐ",r:"およぐ",m:"헤엄치다",l:3},
+{w:"終わる",r:"おわる",m:"끝나다",l:3},
+{w:"音楽",r:"おんがく",m:"음악",l:3,hot:true},
+{w:"会場",r:"かいじょう",m:"회장·행사장",l:3},
+{w:"火事",r:"かじ",m:"화재",l:3},
+{w:"帰る",r:"かえる",m:"돌아가다",l:3},
+{w:"貸す",r:"かす",m:"빌려주다",l:3},
+{w:"家族",r:"かぞく",m:"가족",l:3,hot:true},
+{w:"通う",r:"かよう",m:"다니다",l:3},
+{w:"風",r:"かぜ",m:"바람",l:3},
+{w:"方",r:"かた",m:"분(사람)",l:3},
+{w:"体",r:"からだ",m:"몸",l:3},
+{w:"代わり",r:"かわり",m:"대신",l:3},
+{w:"軽い",r:"かるい",m:"가볍다",l:3},
+{w:"考える",r:"かんがえる",m:"생각하다",l:3},
+{w:"気分",r:"きぶん",m:"기분",l:3},
+{w:"決まる",r:"きまる",m:"결정되다",l:3},
+{w:"着物",r:"きもの",m:"옷·기모노",l:3},
+{w:"急に",r:"きゅうに",m:"급히·갑자기",l:3},
+{w:"教室",r:"きょうしつ",m:"교실",l:3},
+{w:"去年",r:"きょねん",m:"작년",l:3},
+{w:"銀行",r:"ぎんこう",m:"은행",l:3,hot:true},
+{w:"近所",r:"きんじょ",m:"근처·이웃",l:3},
+{w:"首",r:"くび",m:"목",l:3},
+{w:"黒い",r:"くろい",m:"검다",l:3},
+{w:"薬",r:"くすり",m:"약",l:3},
+{w:"暗い",r:"くらい",m:"어둡다",l:3},
+{w:"計画",r:"けいかく",m:"계획",l:3},
+{w:"経験",r:"けいけん",m:"경험",l:3},
+{w:"県",r:"けん",m:"현(행정구역)",l:3},
+{w:"研究",r:"けんきゅう",m:"연구",l:3,hot:true},
+{w:"公園",r:"こうえん",m:"공원",l:3,hot:true},
+{w:"工場",r:"こうじょう",m:"공장",l:3,hot:true},
+{w:"声",r:"こえ",m:"소리·목소리",l:3},
+{w:"今度",r:"こんど",m:"이번·다음",l:3},
+{w:"氷",r:"こおり",m:"얼음",l:3},
+{w:"答える",r:"こたえる",m:"대답하다",l:3},
+{w:"産業",r:"さんぎょう",m:"산업",l:3},
+{w:"試合",r:"しあい",m:"시합",l:3},
+{w:"仕事",r:"しごと",m:"일",l:3},
+{w:"自転車",r:"じてんしゃ",m:"자전거",l:3},
+{w:"質問",r:"しつもん",m:"질문",l:3,hot:true},
+{w:"品物",r:"しなもの",m:"물건",l:3},
+{w:"市民",r:"しみん",m:"시민",l:3},
+{w:"死ぬ",r:"しぬ",m:"죽다",l:3},
+{w:"知る",r:"しる",m:"알다",l:3},
+{w:"社会",r:"しゃかい",m:"사회",l:3},
+{w:"出発",r:"しゅっぱつ",m:"출발",l:3},
+{w:"小説",r:"しょうせつ",m:"소설",l:3},
+{w:"食堂",r:"しょくどう",m:"식당",l:3,hot:true},
+{w:"食料品",r:"しょくりょうひん",m:"식료품",l:3},
+{w:"人口",r:"じんこう",m:"인구",l:3},
+{w:"親切だ",r:"しんせつだ",m:"친절하다",l:3,hot:true},
+{w:"新聞社",r:"しんぶんしゃ",m:"신문사",l:3},
+{w:"水道",r:"すいどう",m:"수도",l:3},
+{w:"少し",r:"すこし",m:"조금",l:3},
+{w:"好きだ",r:"すきだ",m:"좋아하다",l:3},
+{w:"進む",r:"すすむ",m:"나아가다·진행되다",l:3},
+{w:"西洋",r:"せいよう",m:"서양",l:3},
+{w:"説明",r:"せつめい",m:"설명",l:3,hot:true},
+{w:"世界",r:"せかい",m:"세계",l:3,hot:true},
+{w:"世話",r:"せわ",m:"도와줌·보살핌",l:3,hot:true},
+{w:"祖母",r:"そぼ",m:"조모·할머니",l:3},
+{w:"大使館",r:"たいしかん",m:"대사관",l:3},
+{w:"台所",r:"だいどころ",m:"부엌",l:3,hot:true},
+{w:"建物",r:"たてもの",m:"건물",l:3},
+{w:"楽しい",r:"たのしい",m:"즐겁다",l:3},
+{w:"足りる",r:"たりる",m:"충분하다",l:3},
+{w:"茶色",r:"ちゃいろ",m:"갈색",l:3},
+{w:"力",r:"ちから",m:"힘",l:3},
+{w:"注意",r:"ちゅうい",m:"주의",l:3,hot:true},
+{w:"地理",r:"ちり",m:"지리",l:3,hot:true},
+{w:"中止",r:"ちゅうし",m:"중지",l:3},
+{w:"着く",r:"つく",m:"도착하다",l:3},
+{w:"都合",r:"つごう",m:"사정·형편",l:3},
+{w:"強い",r:"つよい",m:"강하다",l:3},
+{w:"手紙",r:"てがみ",m:"편지",l:3},
+{w:"店員",r:"てんいん",m:"점원",l:3,hot:true},
+{w:"遠く",r:"とおく",m:"멀리",l:3},
+{w:"遠い",r:"とおい",m:"멀다",l:3},
+{w:"通る",r:"とおる",m:"지나다",l:3},
+{w:"都会",r:"とかい",m:"도시",l:3},
+{w:"図書館",r:"としょかん",m:"도서관",l:3,hot:true},
+{w:"止まる",r:"とまる",m:"멈추다",l:3},
+{w:"特別だ",r:"とくべつだ",m:"특별하다",l:3,hot:true},
+{w:"特急",r:"とっきゅう",m:"특급",l:3},
+{w:"鳥",r:"とり",m:"새",l:3},
+{w:"夏",r:"なつ",m:"여름",l:3},
+{w:"日記",r:"にっき",m:"일기",l:3},
+{w:"二台",r:"にだい",m:"두 대",l:3},
+{w:"乗る",r:"のる",m:"타다",l:3},
+{w:"運ぶ",r:"はこぶ",m:"운반하다·옮기다",l:3},
+{w:"始める",r:"はじめる",m:"시작하다",l:3,hot:true},
+{w:"走る",r:"はしる",m:"달리다",l:3},
+{w:"場所",r:"ばしょ",m:"장소",l:3},
+{w:"働く",r:"はたらく",m:"일하다",l:3},
+{w:"発音",r:"はつおん",m:"발음",l:3,hot:true},
+{w:"花",r:"はな",m:"꽃",l:3},
+{w:"春",r:"はる",m:"봄",l:3},
+{w:"早く",r:"はやく",m:"일찍·빨리",l:3},
+{w:"光",r:"ひかり",m:"빛",l:3},
+{w:"光る",r:"ひかる",m:"빛나다",l:3},
+{w:"低い",r:"ひくい",m:"낮다",l:3},
+{w:"昼",r:"ひる",m:"낮",l:3},
+{w:"病院",r:"びょういん",m:"병원",l:3,hot:true},
+{w:"広い",r:"ひろい",m:"넓다",l:3},
+{w:"不便だ",r:"ふべんだ",m:"불편하다",l:3},
+{w:"服",r:"ふく",m:"옷",l:3},
+{w:"古い",r:"ふるい",m:"오래됐다·낡다",l:3},
+{w:"冬",r:"ふゆ",m:"겨울",l:3},
+{w:"文",r:"ぶん",m:"문장",l:3},
+{w:"文学",r:"ぶんがく",m:"문학",l:3},
+{w:"勉強",r:"べんきょう",m:"공부",l:3},
+{w:"毎朝",r:"まいあさ",m:"매일 아침",l:3},
+{w:"町",r:"まち",m:"시내·도시",l:3},
+{w:"間に合う",r:"まにあう",m:"시간에 맞추다",l:3},
+{w:"待つ",r:"まつ",m:"기다리다",l:3},
+{w:"短い",r:"みじかい",m:"짧다",l:3},
+{w:"港",r:"みなと",m:"항구",l:3},
+{w:"目",r:"め",m:"눈",l:3},
+{w:"村",r:"むら",m:"마을",l:3},
+{w:"持てる",r:"もてる",m:"들 수 있다",l:3},
+{w:"門",r:"もん",m:"문(門)",l:3},
+{w:"森",r:"もり",m:"숲",l:3},
+{w:"野菜",r:"やさい",m:"채소",l:3},
+{w:"夕方",r:"ゆうがた",m:"저녁때",l:3},
+{w:"有名だ",r:"ゆうめいだ",m:"유명하다",l:3},
+{w:"洋服",r:"ようふく",m:"양복·옷",l:3},
+{w:"予定",r:"よてい",m:"예정",l:3,hot:true},
+{w:"夜",r:"よる",m:"밤",l:3},
+{w:"弱い",r:"よわい",m:"약하다",l:3},
+{w:"旅行",r:"りょこう",m:"여행",l:3,hot:true},
+{w:"別れる",r:"わかれる",m:"헤어지다",l:3},
+{w:"悪い",r:"わるい",m:"나쁘다",l:3}
+);
+
+// ── 4과 VOCAB (1990~1999 기출어휘) ──
+VOCAB.push(
+{w:"間",r:"あいだ",m:"사이·동안",l:4},
+{w:"秋",r:"あき",m:"가을",l:4},
+{w:"味",r:"あじ",m:"맛",l:4},
+{w:"赤い",r:"あかい",m:"빨갛다",l:4},
+{w:"開ける",r:"あける",m:"열다",l:4},
+{w:"姉",r:"あね",m:"언니·누나",l:4},
+{w:"意見",r:"いけん",m:"의견",l:4,hot:true},
+{w:"以外",r:"いがい",m:"이외",l:4,hot:true},
+{w:"以上",r:"いじょう",m:"이상",l:4,hot:true},
+{w:"一週間",r:"いっしゅうかん",m:"일주일간",l:4},
+{w:"入口",r:"いりぐち",m:"입구",l:4,hot:true},
+{w:"医者",r:"いしゃ",m:"의사",l:4},
+{w:"急ぐ",r:"いそぐ",m:"서두르다",l:4},
+{w:"以内",r:"いない",m:"이내",l:4},
+{w:"動きだす",r:"うごきだす",m:"움직이기 시작하다",l:4},
+{w:"写す",r:"うつす",m:"베끼다·찍다",l:4},
+{w:"歌",r:"うた",m:"노래",l:4},
+{w:"海",r:"うみ",m:"바다",l:4},
+{w:"運動",r:"うんどう",m:"운동",l:4,hot:true},
+{w:"運転",r:"うんてん",m:"운전",l:4,hot:true},
+{w:"映画",r:"えいが",m:"영화",l:4,hot:true},
+{w:"駅",r:"えき",m:"역",l:4,hot:true},
+{w:"お医者さん",r:"おいしゃさん",m:"의사 선생님",l:4},
+{w:"屋上",r:"おくじょう",m:"옥상",l:4},
+{w:"多い",r:"おおい",m:"많다",l:4},
+{w:"送る",r:"おくる",m:"보내다",l:4,hot:true},
+{w:"行う",r:"おこなう",m:"행하다",l:4},
+{w:"弟",r:"おとうと",m:"남동생",l:4},
+{w:"お兄さん",r:"おにいさん",m:"형·오빠",l:4},
+{w:"思い出す",r:"おもいだす",m:"떠오르다·생각해내다",l:4,hot:true},
+{w:"泳ぐ",r:"およぐ",m:"헤엄치다",l:4},
+{w:"終わる",r:"おわる",m:"끝나다",l:4},
+{w:"音楽",r:"おんがく",m:"음악",l:4,hot:true},
+{w:"会社",r:"かいしゃ",m:"회사",l:4,hot:true},
+{w:"会話",r:"かいわ",m:"회화",l:4},
+{w:"返す",r:"かえす",m:"반환하다",l:4,hot:true},
+{w:"帰る",r:"かえる",m:"돌아가다",l:4},
+{w:"貸す",r:"かす",m:"빌려주다",l:4},
+{w:"風",r:"かぜ",m:"바람",l:4},
+{w:"家族",r:"かぞく",m:"가족",l:4,hot:true},
+{w:"通う",r:"かよう",m:"다니다",l:4},
+{w:"借りる",r:"かりる",m:"빌리다",l:4,hot:true},
+{w:"体",r:"からだ",m:"몸",l:4},
+{w:"考える",r:"かんがえる",m:"생각하다",l:4},
+{w:"切手",r:"きって",m:"우표",l:4},
+{w:"気分",r:"きぶん",m:"기분",l:4},
+{w:"着物",r:"きもの",m:"옷·기모노",l:4},
+{w:"急に",r:"きゅうに",m:"갑자기",l:4},
+{w:"教室",r:"きょうしつ",m:"교실",l:4},
+{w:"着る",r:"きる",m:"입다",l:4},
+{w:"去年",r:"きょねん",m:"작년",l:4},
+{w:"銀行",r:"ぎんこう",m:"은행",l:4,hot:true},
+{w:"近所",r:"きんじょ",m:"근처",l:4},
+{w:"空気",r:"くうき",m:"공기",l:4},
+{w:"黒い",r:"くろい",m:"검다",l:4},
+{w:"計画",r:"けいかく",m:"계획",l:4},
+{w:"見物",r:"けんぶつ",m:"구경",l:4},
+{w:"研究",r:"けんきゅう",m:"연구",l:4,hot:true},
+{w:"公園",r:"こうえん",m:"공원",l:4,hot:true},
+{w:"工業",r:"こうぎょう",m:"공업",l:4},
+{w:"工場",r:"こうじょう",m:"공장",l:4,hot:true},
+{w:"午後",r:"ごご",m:"오후",l:4},
+{w:"答える",r:"こたえる",m:"대답하다",l:4},
+{w:"米",r:"こめ",m:"쌀",l:4},
+{w:"今年",r:"ことし",m:"올해",l:4},
+{w:"今度",r:"こんど",m:"이번",l:4},
+{w:"魚",r:"さかな",m:"물고기·생선",l:4},
+{w:"時代",r:"じだい",m:"시대",l:4,hot:true},
+{w:"仕事",r:"しごと",m:"일",l:4},
+{w:"自転車",r:"じてんしゃ",m:"자전거",l:4},
+{w:"質問",r:"しつもん",m:"질문",l:4,hot:true},
+{w:"自分",r:"じぶん",m:"자기·자신",l:4,hot:true},
+{w:"品物",r:"しなもの",m:"물건",l:4},
+{w:"死ぬ",r:"しぬ",m:"죽다",l:4},
+{w:"写真",r:"しゃしん",m:"사진",l:4,hot:true},
+{w:"写真家",r:"しゃしんか",m:"사진가",l:4},
+{w:"住所",r:"じゅうしょ",m:"주소",l:4},
+{w:"主人",r:"しゅじん",m:"남편·주인",l:4},
+{w:"社長",r:"しゃちょう",m:"사장",l:4},
+{w:"十分",r:"じゅうぶん",m:"충분히",l:4},
+{w:"出発",r:"しゅっぱつ",m:"출발",l:4},
+{w:"食事",r:"しょくじ",m:"식사",l:4,hot:true},
+{w:"食堂",r:"しょくどう",m:"식당",l:4,hot:true},
+{w:"食料品",r:"しょくりょうひん",m:"식료품",l:4},
+{w:"人口",r:"じんこう",m:"인구",l:4},
+{w:"親切だ",r:"しんせつだ",m:"친절하다",l:4,hot:true},
+{w:"閉める",r:"しめる",m:"닫다",l:4},
+{w:"住む",r:"すむ",m:"살다",l:4,hot:true},
+{w:"世界",r:"せかい",m:"세계",l:4,hot:true},
+{w:"世話",r:"せわ",m:"도와줌·보살핌",l:4,hot:true},
+{w:"空",r:"そら",m:"하늘",l:4},
+{w:"祖母",r:"そぼ",m:"조모·할머니",l:4},
+{w:"大使",r:"たいし",m:"대사",l:4},
+{w:"大切だ",r:"たいせつだ",m:"중요하다",l:4,hot:true},
+{w:"台所",r:"だいどころ",m:"부엌",l:4,hot:true},
+{w:"台風",r:"たいふう",m:"태풍",l:4,hot:true},
+{w:"建物",r:"たてもの",m:"건물",l:4},
+{w:"楽しい",r:"たのしい",m:"즐겁다",l:4},
+{w:"足りない",r:"たりない",m:"모자라다·부족하다",l:4},
+{w:"足りる",r:"たりる",m:"충분하다",l:4},
+{w:"近い",r:"ちかい",m:"가깝다",l:4},
+{w:"地下鉄",r:"ちかてつ",m:"지하철",l:4,hot:true},
+{w:"力",r:"ちから",m:"힘",l:4},
+{w:"地図",r:"ちず",m:"지도",l:4,hot:true},
+{w:"茶色",r:"ちゃいろ",m:"갈색",l:4},
+{w:"注意",r:"ちゅうい",m:"주의",l:4,hot:true},
+{w:"使う",r:"つかう",m:"사용하다",l:4},
+{w:"強い",r:"つよい",m:"강하다",l:4},
+{w:"出口",r:"でぐち",m:"출구",l:4,hot:true},
+{w:"電話代",r:"でんわだい",m:"전화 요금",l:4},
+{w:"店員",r:"てんいん",m:"점원",l:4,hot:true},
+{w:"動物",r:"どうぶつ",m:"동물",l:4,hot:true},
+{w:"特に",r:"とくに",m:"특히",l:4},
+{w:"特別だ",r:"とくべつだ",m:"특별하다",l:4,hot:true},
+{w:"図書館",r:"としょかん",m:"도서관",l:4,hot:true},
+{w:"止まる",r:"とまる",m:"멈추다",l:4},
+{w:"鳥",r:"とり",m:"새",l:4},
+{w:"夏",r:"なつ",m:"여름",l:4},
+{w:"何度も",r:"なんども",m:"몇 번이고",l:4},
+{w:"習う",r:"ならう",m:"배우다",l:4,hot:true},
+{w:"西",r:"にし",m:"서쪽",l:4},
+{w:"走る",r:"はしる",m:"달리다",l:4},
+{w:"働く",r:"はたらく",m:"일하다",l:4},
+{w:"母親",r:"ははおや",m:"모친",l:4},
+{w:"早く",r:"はやく",m:"일찍·빨리",l:4},
+{w:"春",r:"はる",m:"봄",l:4},
+{w:"病院",r:"びょういん",m:"병원",l:4,hot:true},
+{w:"広い",r:"ひろい",m:"넓다",l:4},
+{w:"服",r:"ふく",m:"옷",l:4},
+{w:"古い",r:"ふるい",m:"낡다·오래됐다",l:4},
+{w:"部屋",r:"へや",m:"방",l:4,hot:true},
+{w:"便利だ",r:"べんりだ",m:"편리하다",l:4},
+{w:"毎朝",r:"まいあさ",m:"매일 아침",l:4},
+{w:"待つ",r:"まつ",m:"기다리다",l:4},
+{w:"町",r:"まち",m:"도시·마을",l:4},
+{w:"店",r:"みせ",m:"가게",l:4},
+{w:"野菜",r:"やさい",m:"채소",l:4},
+{w:"安い",r:"やすい",m:"싸다·저렴하다",l:4,hot:true},
+{w:"夕飯",r:"ゆうはん",m:"저녁밥",l:4},
+{w:"用意",r:"ようい",m:"준비",l:4,hot:true},
+{w:"洋服",r:"ようふく",m:"양복·옷",l:4},
+{w:"予定",r:"よてい",m:"예정",l:4,hot:true},
+{w:"夜",r:"よる",m:"밤",l:4},
+{w:"来週",r:"らいしゅう",m:"다음 주",l:4,hot:true},
+{w:"料理",r:"りょうり",m:"요리",l:4,hot:true},
+{w:"旅行",r:"りょこう",m:"여행",l:4,hot:true},
+{w:"悪い",r:"わるい",m:"나쁘다",l:4}
+);
+
 // ── 2과 KANJI ──
 KANJI.push(
 {k:"秋",ko:"가을 추",on:"シュウ",kun:"あき",m:"가을",l:2,from:"秋",
@@ -822,18 +1169,190 @@ KANJI.push(
   hint:"나무(木) 세 그루가 모여 울창한 숲을 이룸 🌳🌳🌳"}
 );
 
+// ── 3과 KANJI ──
+KANJI.push(
+{k:"明",ko:"밝을 명",on:"メイ",kun:"あか·あき",m:"밝다",l:3,from:"明るい",hot:true,
+  hint:"해(日)와 달(月)이 함께 빛나 환하게 밝은 것 ☀️🌙"},
+{k:"開",ko:"열 개",on:"カイ",kun:"あ·ひら",m:"열다",l:3,from:"開ける",
+  hint:"문(門)의 빗장을 두 손으로 활짝 열어 젖히는 모습 🚪"},
+{k:"頭",ko:"머리 두",on:"トウ",kun:"あたま",m:"머리",l:3,from:"頭",
+  hint:"사람(頁)의 맨 위 = 머리 👤"},
+{k:"暑",ko:"더울 서",on:"ショ",kun:"あつ",m:"덥다",l:3,from:"暑い·暑さ",
+  hint:"해(日)가 사람(者) 위에 강렬하게 내리쬐는 여름 더위 🌡️"},
+{k:"集",ko:"모을 집",on:"シュウ",kun:"あつ",m:"모이다",l:3,from:"集まる",
+  hint:"나무(木) 위에 새(隹)들이 무리 지어 모여드는 모습 🐦"},
+{k:"歩",ko:"걸을 보",on:"ホ",kun:"ある",m:"걷다",l:3,from:"歩く",
+  hint:"발(止)이 약간(少) 움직이며 걸어가는 모습 👟"},
+{k:"姉",ko:"언니 자",on:"シ",kun:"あね",m:"언니·누나",l:3,from:"姉",
+  hint:"여자(女) 중 먼저(市) 태어난 언니 👩"},
+{k:"池",ko:"못 지",on:"チ",kun:"いけ",m:"연못",l:3,from:"池",
+  hint:"물(氵)이 뱀(也)처럼 고여 있는 연못 🏞️"},
+{k:"石",ko:"돌 석",on:"セキ",kun:"いし",m:"돌",l:3,from:"石",
+  hint:"절벽(厂) 아래 굴러다니는 네모난 돌 ⬛"},
+{k:"妹",ko:"여동생 매",on:"マイ",kun:"いもうと",m:"여동생",l:3,from:"妹",
+  hint:"여자(女) 중 아직(未) 어린 여동생 👧"},
+{k:"動",ko:"움직일 동",on:"ドウ",kun:"うご",m:"움직이다",l:3,from:"動く",hot:true,
+  hint:"무겁게(重) 힘(力)을 써서 움직이는 것 🏃"},
+{k:"送",ko:"보낼 송",on:"ソウ",kun:"おく",m:"보내다",l:3,from:"送る",hot:true,
+  hint:"길(辶)을 따라 두 손(关)으로 배웅하는 것 📨"},
+{k:"声",ko:"소리 성",on:"セイ",kun:"こえ",m:"소리·목소리",l:3,from:"声",
+  hint:"도끼(士)로 두드려 내는 것처럼 울리는 목소리 📣"},
+{k:"帰",ko:"돌아갈 귀",on:"キ",kun:"かえ",m:"돌아가다",l:3,from:"帰る",
+  hint:"발걸음(止)을 돌려 집으로 돌아가는 것 🏠"},
+{k:"通",ko:"통할 통",on:"ツウ",kun:"とお·かよ",m:"통하다·다니다",l:3,from:"通う·通る",hot:true,
+  hint:"길(辶)을 통하여(甬) 두루 다니는 것 🚦"},
+{k:"軽",ko:"가벼울 경",on:"ケイ",kun:"かる",m:"가볍다",l:3,from:"軽い",
+  hint:"수레(車)가 가볍게(圭) 씽씽 나아가는 것 🪶"},
+{k:"黒",ko:"검을 흑",on:"コク",kun:"くろ",m:"검다",l:3,from:"黒い",
+  hint:"그을음이 쌓여(里) 불(灬)에 탄 검은색 ⬛"},
+{k:"首",ko:"목 수",on:"シュ",kun:"くび",m:"목",l:3,from:"首",
+  hint:"머리와 목 부분을 그린 상형문자 🦒"},
+{k:"決",ko:"결정할 결",on:"ケツ",kun:"き",m:"결정되다",l:3,from:"決まる",
+  hint:"물(氵)이 터지듯(夬) 결정이 나는 것 ✅"},
+{k:"教",ko:"가르칠 교",on:"キョウ",kun:"おし",m:"가르치다·교실",l:3,from:"教室·教える",hot:true,
+  hint:"효도(孝)하듯 + 두드려(攴) 가르치는 것 📖"},
+{k:"銀",ko:"은 은",on:"ギン",kun:"",m:"은·은행",l:3,from:"銀行",hot:true,
+  hint:"쇠(金)의 은색 빛(艮) = 은 🥈"},
+{k:"産",ko:"낳을 산",on:"サン",kun:"う",m:"낳다·생산",l:3,from:"産業",
+  hint:"절벽(厂)에서 신생아(生)가 태어나는(彦 변형) 탄생 👶"},
+{k:"仕",ko:"섬길 사",on:"シ",kun:"つか",m:"일하다·섬기다",l:3,from:"仕事",
+  hint:"사람(亻)이 선비(士)처럼 일을 하는 것 💼"},
+{k:"試",ko:"시험할 시",on:"シ",kun:"こころみ",m:"시험·시합",l:3,from:"試合",
+  hint:"말(言)로 식(式)처럼 시험하는 것 📝"},
+{k:"知",ko:"알 지",on:"チ",kun:"し",m:"알다",l:3,from:"知る",hot:true,
+  hint:"화살(矢)처럼 입(口)으로 빠르게 전달되는 앎 💡"},
+{k:"説",ko:"말씀 설",on:"セツ",kun:"と",m:"설명하다",l:3,from:"説明",hot:true,
+  hint:"말(言)로 기쁘게(兌) 풀어 설득하는 것 💬"},
+{k:"世",ko:"세상 세",on:"セイ",kun:"よ",m:"세상·세대",l:3,from:"世界",hot:true,
+  hint:"십(十)이 세 번 겹쳐 = 30년의 한 세대, 이 세상 🌍"},
+{k:"台",ko:"대 대",on:"ダイ",kun:"だい",m:"대·부엌",l:3,from:"台所",hot:true,
+  hint:"입(口)을 내밀고 서있는 사람(厶) = 무대 🎭"},
+{k:"注",ko:"붓을 주",on:"チュウ",kun:"そそ",m:"주의·붓다",l:3,from:"注意",hot:true,
+  hint:"물(氵)을 주인(主)처럼 쏟아붓는 것 💧"},
+{k:"地",ko:"땅 지",on:"チ",kun:"",m:"땅·지리",l:3,from:"地理",hot:true,
+  hint:"흙(土)이 뱀처럼(也) 구불구불 이어진 대지 🌎"},
+{k:"手",ko:"손 수",on:"シュ",kun:"て",m:"손·편지",l:3,from:"手紙",
+  hint:"손가락 5개가 달린 손 모양의 상형문자 ✋"},
+{k:"特",ko:"특별할 특",on:"トク",kun:"",m:"특별하다",l:3,from:"特別だ·特急",hot:true,
+  hint:"소(牛)가 사원(寺)처럼 특별히 서있는 것 ⭐"},
+{k:"鳥",ko:"새 조",on:"チョウ",kun:"とり",m:"새",l:3,from:"鳥",
+  hint:"부리·눈·날개·꼬리가 있는 새의 모습 🐦"},
+{k:"港",ko:"항구 항",on:"コウ",kun:"みなと",m:"항구",l:3,from:"港",
+  hint:"물(氵)이 공(巷)처럼 공동으로 쓰이는 항구 ⚓"},
+{k:"目",ko:"눈 목",on:"モク",kun:"め",m:"눈(目)",l:3,from:"目",
+  hint:"눈의 모양을 세워서 그린 상형문자 👁️"},
+{k:"森",ko:"숲 삼",on:"シン",kun:"もり",m:"숲",l:3,from:"森",
+  hint:"나무(木) 세 그루가 모여 울창한 숲을 이룸 🌳🌳🌳"},
+{k:"有",ko:"있을 유",on:"ユウ",kun:"あ",m:"있다·유명",l:3,from:"有名だ",hot:true,
+  hint:"손(ナ)이 고기(月)를 가지고 있는 모습 ✋"},
+{k:"夕",ko:"저녁 석",on:"セキ",kun:"ゆう",m:"저녁",l:3,from:"夕方",
+  hint:"달이 반쯤 보이는 저녁 하늘의 모습 🌙"},
+{k:"洋",ko:"바다 양",on:"ヨウ",kun:"",m:"서양·바다",l:3,from:"洋服·西洋",
+  hint:"물(氵)이 양(羊)처럼 넓게 펼쳐진 서양의 바다 🌊"},
+{k:"夜",ko:"밤 야",on:"ヤ",kun:"よる",m:"밤",l:3,from:"夜",hot:true,
+  hint:"저녁(夕)에 사람(亻)이 달(月) 아래 서있는 밤 🌙"},
+{k:"旅",ko:"여행 려",on:"リョ",kun:"たび",m:"여행",l:3,from:"旅行",hot:true,
+  hint:"깃발(方) 아래 사람들이 무리 지어 떠나는 여행 ✈️"},
+{k:"悪",ko:"나쁠 악",on:"アク",kun:"わる",m:"나쁘다",l:3,from:"悪い",
+  hint:"아시아(亜)처럼 굴절된 마음(心) = 비뚤어진 마음 😈"}
+);
+
+// ── 4과 KANJI ──
+KANJI.push(
+{k:"間",ko:"사이 간",on:"カン",kun:"あいだ",m:"사이·동안",l:4,from:"間",hot:true,
+  hint:"문(門) 사이로 햇빛(日)이 새어 들어오는 틈 🚪"},
+{k:"入",ko:"들 입",on:"ニュウ",kun:"い·はい",m:"들다·입구",l:4,from:"入口",hot:true,
+  hint:"안쪽을 향해 벌어지는 두 획 = 안으로 들어가는 모습 ↩️"},
+{k:"映",ko:"비칠 영",on:"エイ",kun:"うつ",m:"영화·비치다",l:4,from:"映画",hot:true,
+  hint:"해(日)가 가운데(央)에서 빛을 비추는 것 🎬"},
+{k:"屋",ko:"집 옥",on:"オク",kun:"や",m:"집·지붕·가게",l:4,from:"屋上",hot:true,
+  hint:"지붕(尸) 아래 이르다(至) = 지붕이 있는 집 🏠"},
+{k:"多",ko:"많을 다",on:"タ",kun:"おお",m:"많다",l:4,from:"多い",
+  hint:"저녁(夕) 두 개가 겹쳐 = 많은 밤 = 많음 🌙🌙"},
+{k:"弟",ko:"아우 제",on:"テイ",kun:"おとうと",m:"남동생",l:4,from:"弟",
+  hint:"나무(木)에 끈(弓+丿)으로 묶인 아우 = 동생 👦"},
+{k:"思",ko:"생각 사",on:"シ",kun:"おも",m:"생각하다·생각",l:4,from:"思い出す",hot:true,
+  hint:"밭(田)처럼 마음(心)에 씨앗을 심어 키우는 생각 🧠"},
+{k:"返",ko:"돌아올 반",on:"ヘン",kun:"かえ",m:"반환하다·돌아오다",l:4,from:"返す",hot:true,
+  hint:"길(辶)을 반(反)으로 돌아서 되돌아오는 것 🔄"},
+{k:"借",ko:"빌릴 차",on:"シャク",kun:"か",m:"빌리다",l:4,from:"借りる",hot:true,
+  hint:"사람(亻)이 예전(昔)처럼 빌려오는 것 📋"},
+{k:"空",ko:"빌 공",on:"クウ",kun:"そら·から",m:"하늘·비다",l:4,from:"空気·空",hot:true,
+  hint:"구멍(穴) 안이 텅텅 빈(工) 것처럼 하늘도 텅 비어있음 ☁️"},
+{k:"米",ko:"쌀 미",on:"ベイ",kun:"こめ",m:"쌀",l:4,from:"米",
+  hint:"볍씨가 사방으로 퍼진 모양 = 쌀 🌾"},
+{k:"魚",ko:"물고기 어",on:"ギョ",kun:"さかな",m:"물고기·생선",l:4,from:"魚",hot:true,
+  hint:"머리·비늘·꼬리지느러미가 있는 물고기 모양 🐟"},
+{k:"時",ko:"때 시",on:"ジ",kun:"とき",m:"때·시대",l:4,from:"時代",hot:true,
+  hint:"해(日)를 사원(寺)처럼 재어 시간을 측정하는 것 ⏰"},
+{k:"自",ko:"스스로 자",on:"ジ",kun:"みずか",m:"스스로·자신",l:4,from:"自分",hot:true,
+  hint:"코(自)로 자기 자신을 가리킴 = 스스로 👃"},
+{k:"写",ko:"베낄 사",on:"シャ",kun:"うつ",m:"베끼다·사진",l:4,from:"写真·写す",hot:true,
+  hint:"지붕(宀) 아래에서 갖다 대어(与) 베끼는 것 📸"},
+{k:"主",ko:"주인 주",on:"シュ",kun:"ぬし",m:"주인·남편",l:4,from:"主人",
+  hint:"촛대(王) 위의 불꽃(、) = 모든 것의 중심인 주인 🕯️"},
+{k:"住",ko:"살 주",on:"ジュウ",kun:"す",m:"살다·주소",l:4,from:"住む·住所",hot:true,
+  hint:"사람(亻)이 주인(主)처럼 자리 잡아 사는 것 🏠"},
+{k:"大",ko:"클 대",on:"ダイ",kun:"おお",m:"크다·중요하다",l:4,from:"大切だ",hot:true,
+  hint:"팔다리를 크게 벌린 사람의 모습 💪"},
+{k:"鉄",ko:"쇠 철",on:"テツ",kun:"",m:"쇠·지하철",l:4,from:"地下鉄",hot:true,
+  hint:"쇠(金)를 잃어(失) 버려야 할 만큼 단단한 철 🔩"},
+{k:"電",ko:"번개 전",on:"デン",kun:"",m:"전기·전화",l:4,from:"電話代",hot:true,
+  hint:"비(雨) 아래서 번쩍이는 번개(申) = 전기 ⚡"},
+{k:"動",ko:"움직일 동",on:"ドウ",kun:"うご",m:"움직이다·동물",l:4,from:"動物·動きだす",hot:true,
+  hint:"무겁게(重) 힘(力)을 써서 움직이는 것 🏃"},
+{k:"西",ko:"서쪽 서",on:"セイ",kun:"にし",m:"서쪽·서양",l:4,from:"西",
+  hint:"새(隹)가 둥지(巣)에 돌아오는 저녁 = 서쪽 🧭"},
+{k:"母",ko:"어머니 모",on:"ボ",kun:"はは",m:"어머니",l:4,from:"母親",hot:true,
+  hint:"어머니가 가슴으로 아이를 품은 모습 👩"},
+{k:"便",ko:"편할 편",on:"ベン",kun:"たよ",m:"편리하다·변",l:4,from:"便利だ",hot:true,
+  hint:"사람(亻)이 고쳐서(更) 편리하게 만든 것 ✅"},
+{k:"部",ko:"나눌 부",on:"ブ",kun:"",m:"부분·방",l:4,from:"部屋",hot:true,
+  hint:"고을(阜)을 칼(刀)로 나누어(口) 부분으로 만든 것 🏘️"},
+{k:"店",ko:"가게 점",on:"テン",kun:"みせ",m:"가게",l:4,from:"店",hot:true,
+  hint:"지붕(广) 아래 점(占)을 치듯 자리 잡은 가게 🏪"},
+{k:"安",ko:"편안할 안",on:"アン",kun:"やす",m:"싸다·편안하다",l:4,from:"安い",hot:true,
+  hint:"지붕(宀) 아래 여자(女)가 편안히 앉아있는 모습 😌"},
+{k:"用",ko:"쓸 용",on:"ヨウ",kun:"もち",m:"준비·쓰다",l:4,from:"用意",hot:true,
+  hint:"중심(|)을 네모(口)로 둘러싼 쓸모있는 것 🔧"},
+{k:"来",ko:"올 래",on:"ライ",kun:"く·き",m:"오다·다음",l:4,from:"来週",hot:true,
+  hint:"밀(禾) 이삭처럼 앞으로 다가올 것들 🌾"},
+{k:"料",ko:"재료 료",on:"リョウ",kun:"",m:"요리·재료",l:4,from:"料理",hot:true,
+  hint:"쌀(米)을 되(斗)로 재는 요금이나 재료 🍚"}
+);
+
+// ================================================================
+// 최근 5개년(2020~2024) JLPT N4 출제 빈도 높은 단어/한자 목록
+// ================================================================
+const HOT=new Set([
+  // 단어
+  "運動","音楽","会社","図書館","地下鉄","病院","旅行","写真","食堂","家族",
+  "入口","出口","地図","台所","部屋","注意","料理","特別だ","世界","発音",
+  "意見","以上","以外","大切だ","自分","時代","親切だ","英語","銀行","公園",
+  "工場","運転","映画","研究","説明","世話","台風","動物","来週","用意",
+  "空気","地理","店員","始める","習う","送る","思い出す","借りる",
+  // 한자
+  "運","音","会","図","地","病","旅","写","食","家","入","出","電","注","特",
+  "世","発","意","英","銀","公","研","説","台","動","来","用","空","始","習",
+  "送","思","借","映","駅","多","弟","返","時","自","住","母","便","部","店",
+  "安","料","魚","間","米","西"
+]);
+
 // ================================================================
 // STATE
 // ================================================================
 const LESSONS={
-  1:{name:"기출어휘",sub:"2016~2024"},
-  2:{name:"기출어휘",sub:"2000~2015"}
+  1:{name:"기출어휘",sub:"N4 시험 출제 (2016~2024)"},
+  2:{name:"기출어휘",sub:"N4 시험 출제 (2000~2015)"},
+  3:{name:"기출어휘",sub:"N4 시험 출제 (2000~2015) ②"},
+  4:{name:"기출어휘",sub:"N4 시험 출제 (1990~1999)"}
 };
 
 const shuf=a=>{const r=[...a];for(let i=r.length-1;i>0;i--){const j=0|Math.random()*(i+1);[r[i],r[j]]=[r[j],r[i]];}return r;};
 
 let S={
   deck:[],idx:0,flipped:false,dtype:"",
+  hintOpen:false,
   qdeck:[],quiz:null,sel:null,
   score:0,combo:0,maxC:0,tot:0,corr:0,
   col:"v",lastFn:null,curLesson:1,
@@ -887,6 +1406,8 @@ function renderLessonDetail(lid){
   const vp=vs.length?Math.round(vk/vs.length*100):0;
   const kp=ks.length?Math.round(kk2/ks.length*100):0;
   const tp=Math.round((vk+kk2)/(vs.length+ks.length)*100);
+  const hotV=vs.filter(x=>x.hot||HOT.has(x.w)).length;
+  const hotK=ks.filter(x=>x.hot||HOT.has(x.k)).length;
 
   document.getElementById("home-body").innerHTML=`
     <div class="lc">
@@ -901,7 +1422,7 @@ function renderLessonDetail(lid){
         <div class="sh">
           <div class="si v">語</div>
           <div class="st">단어 학습</div>
-          <div class="sc">${vs.length}개</div>
+          <div class="sc">${vs.length}개${hotV?` <span class="hot-badge">⭐ 중요 ${hotV}개</span>`:""}</div>
           <div class="sp v">${vp}%</div>
         </div>
         <div class="mbg" style="grid-template-columns:1fr 1fr">
@@ -957,7 +1478,7 @@ function startFlash(lid,dtype){
   const isH=dtype==="hira";
   S.col=isK?"k":"v";
   S.deck=shuf(isK?kan(lid):voc(lid));
-  S.idx=0;S.flipped=false;
+  S.idx=0;S.flipped=false;S.hintOpen=false;
   S.lastFn=()=>startFlash(lid,dtype);
   const ln=LESSONS[lid];
   const ttl=isK?"📚 한자 카드":isH?"📚 히라가나→한자 카드":"📚 단어 카드";
@@ -982,21 +1503,32 @@ function renderCard(){
   const isK=S.dtype==="kanji";
   const isH=S.dtype==="hira";
   const key=isK?c.k:c.w;
+  const isHot=(c.hot||HOT.has(c.w)||HOT.has(c.k));
   document.getElementById("fl-sc").textContent=calcPct();
   document.getElementById("fl-pf").style.width=((S.idx+1)/S.deck.length*100)+"%";
   document.getElementById("fl-ctr").textContent=`${S.idx+1} / ${S.deck.length}`;
 
   // 앞면
   if(isH){
-    // 히라가나 모드: 앞면에 히라가나만 크게
     document.getElementById("cf-fr").innerHTML=`
       <div class="c-tag" style="background:#7B3FA0;color:white">ひらがな</div>
       <div style="font-size:52px;color:#7B3FA0;font-family:'Noto Serif JP',serif;font-weight:600;line-height:1;margin-bottom:6px">${c.r}</div>
       <div style="font-family:'Noto Sans KR',sans-serif;font-size:11px;color:var(--ilt);margin-top:10px">이 히라가나에 해당하는 한자는? ↻</div>`;
+  } else if(isK){
+    // 한자 카드 앞면: 힌트 버튼 + HOT 배지
+    document.getElementById("cf-fr").innerHTML=`
+      <div class="c-tag k">漢字1字</div>
+      ${isHot?'<div style="position:absolute;top:12px;left:12px"><span class="hot-badge">⭐ 중요단어</span></div>':''}
+      ${c.hint?`<button class="btn-hint-front" onclick="event.stopPropagation();S.hintOpen=!S.hintOpen;renderCard()">
+        ${S.hintOpen?"힌트 닫기 ✕":"💡 힌트 보기"}</button>`:""}
+      <div class="c-word kanji1" style="margin-top:${c.hint?'10px':'0'}">${c.k}</div>
+      <div class="c-tap">탭하여 뒤집기 ↻</div>
+      ${S.hintOpen&&c.hint?`<div class="hint-popup"><b>💡 연상</b>　${c.hint}</div>`:""}`;
   } else {
     document.getElementById("cf-fr").innerHTML=`
-      <div class="c-tag ${S.col}">${isK?"漢字1字":"語彙"}</div>
-      <div class="c-word ${c.w?.length>4?"sm":""} ${isK?"kanji1":""}">${isK?c.k:c.w}</div>
+      <div class="c-tag v">語彙</div>
+      ${isHot?'<div style="position:absolute;top:12px;left:12px"><span class="hot-badge">⭐ 중요단어</span></div>':''}
+      <div class="c-word ${c.w.length>4?"sm":""}">${c.w}</div>
       <div class="c-tap">탭하여 뒤집기 ↻</div>`;
   }
 
@@ -1018,15 +1550,16 @@ function renderCard(){
     bk.className="cf cf-bk k";
     bk.innerHTML=`
       <div class="c-tag k">漢字1字</div>
+      ${isHot?'<div style="position:absolute;top:12px;left:12px"><span class="hot-badge">⭐ 중요단어</span></div>':''}
       <div class="c-wb k" style="font-size:54px;margin-bottom:4px">${c.k}</div>
       <div class="ko-name">${c.ko}</div>
       ${rtags?`<div class="rtags">${rtags}</div>`:""}
-      ${c.hint?`<div class="hint-box"><b>💡 연상 힌트</b><br>${c.hint}</div>`:""}
       <div class="c-from">출처: ${c.from}</div>`;
   } else {
     bk.className="cf cf-bk v";
     bk.innerHTML=`
       <div class="c-tag v">語彙</div>
+      ${isHot?'<div style="position:absolute;top:12px;left:12px"><span class="hot-badge">⭐ 중요단어</span></div>':''}
       <div class="c-wb v">${c.w}</div>
       <div class="c-read v">${c.r}</div>
       <div class="c-mean">${c.m}</div>`;
@@ -1038,14 +1571,14 @@ function renderCard(){
   document.getElementById("bn-n").disabled=S.idx===S.deck.length-1;
 }
 
-function flipCard(){S.flipped=!S.flipped;renderCard();}
-function prevCard(){if(S.idx>0){S.idx--;S.flipped=false;renderCard();}}
-function nextCard(){if(S.idx<S.deck.length-1){S.idx++;S.flipped=false;renderCard();}}
+function flipCard(){S.flipped=!S.flipped;S.hintOpen=false;renderCard();}
+function prevCard(){if(S.idx>0){S.idx--;S.flipped=false;S.hintOpen=false;renderCard();}}
+function nextCard(){if(S.idx<S.deck.length-1){S.idx++;S.flipped=false;S.hintOpen=false;renderCard();}}
 function markWord(know){
   const c=S.deck[S.idx];
-  const key=S.dtype==="vocab"?c.w:c.k;
+  const key=S.dtype==="kanji"?c.k:c.w;
   if(know)S.lrn[key]=true; else delete S.lrn[key];
-  save();S.flipped=false;
+  save();S.flipped=false;S.hintOpen=false;
   if(S.idx<S.deck.length-1)S.idx++;
   renderCard();
 }
@@ -1129,31 +1662,54 @@ function buildQ(){
   if(mode==="on"){
     qtype="음독(音読み)은?";
     qwTxt=c.k;qrTxt="";qsTxt=`훈독: ${c.kun||"—"} · 뜻: ${c.m}`;
-    correct=c.on;opts=shuf([c.on,...others.map(x=>x.on||x.r||"—")]);
+    correct=c.on;opts=[c.on,...others.map(x=>x.on||x.r||"—")];
   } else if(mode==="kun"){
     qtype="훈독(訓読み)은?";
     qwTxt=c.k;qrTxt="";qsTxt=`음독: ${c.on||"—"} · 뜻: ${c.m}`;
-    correct=c.kun;opts=shuf([c.kun,...others.map(x=>x.kun||x.r||"—")]);
+    correct=c.kun;opts=[c.kun,...others.map(x=>x.kun||x.r||"—")];
   } else if(mode==="read"){
     qtype="읽기는?";
     qwTxt=c.w;qrTxt="";qsTxt=`뜻: ${c.m}`;
-    correct=c.r;opts=shuf([c.r,...others.map(x=>x.r)]);
+    correct=c.r;opts=[c.r,...others.map(x=>x.r)];
   } else if(mode==="hira"){
-    // 히라가나 보고 → 한자/단어 고르기
     qtype="이 히라가나에 해당하는 단어는?";
     qwTxt=c.r;qrTxt="";qsTxt=`뜻: ${c.m}`;
-    correct=c.w;opts=shuf([c.w,...others.map(x=>x.w)]);
+    correct=c.w;opts=[c.w,...others.map(x=>x.w)];
   } else if(mode==="hiramean"){
-    // 히라가나 보고 → 한글 뜻 4지선다
     qtype="히라가나를 보고 한글 뜻을 고르세요";
     qwTxt=c.r;qrTxt="";
     qsTxt=`(힌트: 한자는 「${c.w}」)`;
-    correct=c.m;opts=shuf([c.m,...others.map(x=>x.m)]);
+    correct=c.m;opts=[c.m,...others.map(x=>x.m)];
   } else {
     qtype="뜻은?";
     qwTxt=isK?c.k:c.w;qrTxt=isK?c.on:c.r;qsTxt="";
-    correct=c.m;opts=shuf([c.m,...others.map(x=>x.m)]);
+    correct=c.m;opts=[c.m,...others.map(x=>x.m)];
   }
+
+  // ── 중복 옵션 제거 ──
+  const seen=new Set();
+  const deduped=[correct];
+  seen.add(correct);
+  for(const o of opts){
+    if(!seen.has(o)&&o&&o!=="—"){seen.add(o);deduped.push(o);}
+  }
+  // 4개 미만이면 전체 풀에서 추가
+  if(deduped.length<4){
+    const allPool=S._all;
+    const key=isK?"k":"w";
+    const extras=shuf(allPool.filter(x=>x[key]!==(isK?c.k:c.w)));
+    for(const x of extras){
+      if(deduped.length>=4)break;
+      let val;
+      if(mode==="on")val=x.on;
+      else if(mode==="kun")val=x.kun;
+      else if(mode==="read")val=x.r;
+      else if(mode==="hira")val=x.w;
+      else val=x.m;
+      if(val&&!seen.has(val)){seen.add(val);deduped.push(val);}
+    }
+  }
+  opts=shuf(deduped.slice(0,4));
 
   S.quiz={c,correct};S.sel=null;
 
